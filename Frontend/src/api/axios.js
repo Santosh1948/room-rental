@@ -1,7 +1,9 @@
 import axios from "axios";
 
 const api = axios.create({
-    baseURL: import.meta.env.VITE_API_BASE_URL,
+    baseURL:
+        import.meta.env.VITE_API_BASE_URL ||
+        "https://room-rental-backend-e89v.onrender.com/api",
     headers: {
         "Content-Type": "application/json",
     },

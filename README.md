@@ -57,10 +57,10 @@ Use a strong, private JWT secret and keep `.env` files out of version control.
 Create `Frontend/.env`:
 
 ```dotenv
-VITE_API_BASE_URL=http://localhost:3000/api
+VITE_API_BASE_URL=https://room-rental-backend-e89v.onrender.com/api
 ```
 
-The frontend uses this base URL for API requests.
+The frontend uses this base URL for API requests. The deployed Render API URL is also the frontend's default when this variable is unset. To use a local backend instead, set the value to `http://localhost:3000/api`.
 
 ### Start the application
 
