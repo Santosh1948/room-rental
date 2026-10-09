@@ -1,0 +1,28 @@
+@import "tailwindcss";
+
+@theme {
+    --font-sans: "DM Sans", sans-serif;
+    --font-display: "Plus Jakarta Sans", sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-width: 320px;
+    background: #f8fafc;
+    color: #0f172a;
+    font-family: "DM Sans", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+    background: rgba(37, 99, 235, 0.18);
+}
+
+button,
+a {
+    -webkit-tap-highlight-color: transparent;
+}
