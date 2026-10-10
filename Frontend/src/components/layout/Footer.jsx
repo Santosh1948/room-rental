@@ -1,8 +1,12 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Home, Mail, MapPin, Phone } from "lucide-react";
 
-const Footer = () => (
-    <footer className="border-t border-slate-200 bg-slate-950 text-slate-300">
+const Footer = () => {
+    const location = useLocation();
+    const isRegisterPage = location.pathname === "/register";
+
+    return (
+        <footer className="border-t border-slate-200 bg-slate-950 text-slate-300">
         <div className="mx-auto grid max-w-7xl gap-8 px-4 py-14 sm:px-6 lg:grid-cols-3 lg:gap-10 lg:px-8">
             <div>
                 <Link to="/" className="inline-flex items-center gap-2.5">
@@ -35,11 +39,13 @@ const Footer = () => (
                             About
                         </Link>
                     </li>
-                    <li>
-                        <Link to="/register" className="hover:text-white">
-                            Create account
-                        </Link>
-                    </li>
+                    {!isRegisterPage && (
+                        <li>
+                            <Link to="/register" className="hover:text-white">
+                                Create account
+                            </Link>
+                        </li>
+                    )}
                 </ul>
             </div>
 
@@ -70,7 +76,8 @@ const Footer = () => (
                 <p>Built for modern room rental experiences.</p>
             </div>
         </div>
-    </footer>
-);
+        </footer>
+    );
+};
 
 export default Footer;

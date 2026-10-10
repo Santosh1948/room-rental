@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
     Bell,
@@ -19,7 +19,9 @@ import { setNotifications } from "../../store/slices/notificationSlice";
 
 const Navbar = () => {
     const navigate = useNavigate();
+    const location = useLocation();
     const dispatch = useDispatch();
+    const isRegisterPage = location.pathname === "/register";
 
     const [mobileOpen, setMobileOpen] = useState(false);
     const [profileOpen, setProfileOpen] = useState(false);
@@ -258,12 +260,14 @@ const Navbar = () => {
                                 Login
                             </Link>
 
-                            <Link
-                                to="/register"
-                                className="rounded-xl bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-blue-600/20 transition hover:bg-blue-700"
-                            >
-                                Get Started
-                            </Link>
+                            {!isRegisterPage && (
+                                <Link
+                                    to="/register"
+                                    className="rounded-xl bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-blue-600/20 transition hover:bg-blue-700"
+                                >
+                                    Get Started
+                                </Link>
+                            )}
                         </>
                     )}
                 </div>
@@ -405,14 +409,16 @@ const Navbar = () => {
                                     Login
                                 </Link>
 
-                                <Link
-                                    to="/register"
-                                    onClick={closeMobile}
-                                    className="mt-2 flex items-center justify-center gap-2 rounded-xl bg-blue-600 px-4 py-3 text-sm font-bold text-white"
-                                >
-                                    <UserRound size={18} />
-                                    Get Started
-                                </Link>
+                                {!isRegisterPage && (
+                                    <Link
+                                        to="/register"
+                                        onClick={closeMobile}
+                                        className="mt-2 flex items-center justify-center gap-2 rounded-xl bg-blue-600 px-4 py-3 text-sm font-bold text-white"
+                                    >
+                                        <UserRound size={18} />
+                                        Get Started
+                                    </Link>
+                                )}
                             </>
                         )}
                     </nav>
