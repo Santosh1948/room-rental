@@ -15,6 +15,7 @@ import {
 
 import propertyService from "../../services/propertyService";
 import RoomManager from "../../components/property/RoomManager";
+import ImageUploader from "../../components/ImageUploader";
 
 const PROPERTY_TYPES = [
     "HOUSE",
@@ -724,9 +725,24 @@ const OwnerProperties = () => {
 
                                     {/* Images */}
                                     <div className="sm:col-span-2">
+                                        <div className="mb-3">
+                                            <ImageUploader
+                                                endpoint="/upload/properties"
+                                                existingImages={form.images || []}
+                                                onChange={(nextImages) =>
+                                                    setForm((prev) => ({
+                                                        ...prev,
+                                                        images: nextImages,
+                                                    }))
+                                                }
+                                                label="Property gallery"
+                                                maxFiles={5}
+                                            />
+                                        </div>
+
                                         <label className="mb-2 flex items-center gap-2 text-sm font-semibold text-slate-700">
                                             <ImageIcon size={16} />
-                                            Image URLs
+                                            Add image URL manually
                                         </label>
 
                                         <div className="flex gap-2">

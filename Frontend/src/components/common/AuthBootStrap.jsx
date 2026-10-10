@@ -18,7 +18,12 @@ const AuthBootstrap = ({ children }) => {
             }
 
             try {
-                const user = await authService.getProfile();
+                const profileResponse = await authService.getProfile();
+                const user =
+                    profileResponse.user ||
+                    profileResponse.data?.user ||
+                    profileResponse.data ||
+                    profileResponse;
 
                 dispatch(
                     loginSuccess({

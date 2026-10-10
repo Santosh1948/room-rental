@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 
 import roomService from "../../services/roomService";
+import ImageUploader from "../ImageUploader";
 
 const ROOM_TYPES = ["SINGLE", "DOUBLE", "TRIPLE", "SHARED"];
 
@@ -471,6 +472,21 @@ const RoomManager = ({ property, onClose }) => {
                                         </option>
                                     ))}
                                 </select>
+                            </div>
+
+                            <div className="sm:col-span-2">
+                                <ImageUploader
+                                    endpoint="/upload/rooms"
+                                    existingImages={form.images || []}
+                                    onChange={(nextImages) =>
+                                        setForm((prev) => ({
+                                            ...prev,
+                                            images: nextImages,
+                                        }))
+                                    }
+                                    label="Room gallery"
+                                    maxFiles={5}
+                                />
                             </div>
 
                             <div className="flex flex-col-reverse gap-3 border-t border-slate-200 pt-5 sm:col-span-2 sm:flex-row sm:justify-end">

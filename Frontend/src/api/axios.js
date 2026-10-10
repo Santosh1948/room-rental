@@ -1,4 +1,4 @@
-﻿import axios from "axios";
+import axios from "axios";
 
 const api = axios.create({
     baseURL:
@@ -14,8 +14,14 @@ api.interceptors.request.use(
     (config) => {
         const token = localStorage.getItem("token");
 
+        config.headers = config.headers || {};
+
         if (token) {
             config.headers.Authorization = `Bearer ${token}`;
+        }
+
+        if (config.data instanceof FormData) {
+            delete config.headers["Content-Type"];
         }
 
         return config;

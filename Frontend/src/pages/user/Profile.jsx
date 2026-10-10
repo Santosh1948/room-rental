@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 
 import userService from "../../services/userService";
+import ImageUploader from "../../components/ImageUploader";
 import { updateUser } from "../../store/slices/authSlice";
 
 const Profile = () => {
@@ -27,6 +28,7 @@ const Profile = () => {
         phone: "",
         email: "",
     });
+    const [profileImage, setProfileImage] = useState("");
 
     const [passwords, setPasswords] = useState({
         currentPassword: "",
@@ -60,6 +62,7 @@ const Profile = () => {
                     phone: currentUser.phone || "",
                     email: currentUser.email || "",
                 });
+                setProfileImage(currentUser.profileImage || "");
             } catch (err) {
                 setError(
                     err.response?.data?.message ||
@@ -85,6 +88,21 @@ const Profile = () => {
             ...passwords,
             [event.target.name]: event.target.value,
         });
+    };
+
+    const handleProfileImageChange = (nextImages) => {
+        const nextImage = nextImages[nextImages.length - 1] || "";
+
+        setProfileImage(nextImage);
+
+        if (user) {
+            dispatch(
+                updateUser({
+                    ...user,
+                    profileImage: nextImage,
+                })
+            );
+        }
     };
 
     const handleProfileSubmit = async (event) => {
@@ -178,10 +196,18 @@ const Profile = () => {
                     </Link>
 
                     <div className="flex items-center gap-4">
-                        <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-600 text-xl font-extrabold text-white shadow-lg shadow-blue-600/20">
-                            {profile.name
-                                ? profile.name.charAt(0).toUpperCase()
-                                : "U"}
+                        <div className="flex h-14 w-14 items-center justify-center overflow-hidden rounded-2xl bg-blue-600 text-xl font-extrabold text-white shadow-lg shadow-blue-600/20">
+                            {profileImage ? (
+                                <img
+                                    src={profileImage}
+                                    alt={profile.name || "Profile"}
+                                    className="h-full w-full object-cover"
+                                />
+                            ) : profile.name ? (
+                                profile.name.charAt(0).toUpperCase()
+                            ) : (
+                                "U"
+                            )}
                         </div>
 
                         <div>
@@ -205,8 +231,29 @@ const Profile = () => {
                 )}
 
                 <div className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
-                    {/* Profile */}
                     <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
+                        <div className="mb-8">
+                            <h2 className="text-lg font-bold text-slate-900">
+                                Profile photo
+                            </h2>
+                            <p className="mt-1 text-sm text-slate-500">
+                                Upload a clear profile picture for your account.
+                            </p>
+
+                            <div className="mt-4">
+                                <ImageUploader
+                                    endpoint="/users/profile-image"
+                                    existingImages={profileImage ? [profileImage] : []}
+                                    onChange={handleProfileImageChange}
+                                    label="Profile photo"
+                                    maxFiles={1}
+                                    multiple={false}
+                                />
+                            </div>
+                        </div>
+
+                        {/* Profile */}
+                        <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
                         <div className="mb-7">
                             <div className="flex items-center gap-3">
                                 <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
@@ -324,6 +371,7 @@ const Profile = () => {
                                     : "Save changes"}
                             </button>
                         </form>
+                        </div>
                     </div>
 
                     {/* Password */}
