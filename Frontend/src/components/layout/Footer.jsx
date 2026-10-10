@@ -3,7 +3,7 @@ import { Home, Mail, MapPin, Phone } from "lucide-react";
 
 const Footer = () => (
     <footer className="border-t border-slate-200 bg-slate-950 text-slate-300">
-        <div className="mx-auto grid max-w-7xl gap-8 px-4 py-14 sm:px-6 lg:grid-cols-[1.5fr_1fr_1fr] lg:gap-10 lg:px-8">
+        <div className="mx-auto grid max-w-7xl gap-8 px-4 py-14 sm:px-6 lg:grid-cols-3 lg:gap-10 lg:px-8">
             <div>
                 <Link to="/" className="inline-flex items-center gap-2.5">
                     <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-600 text-white">

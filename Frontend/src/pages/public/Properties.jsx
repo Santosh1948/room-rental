@@ -26,6 +26,15 @@ const propertyTypes = [
     { value: "House", label: "House" },
 ];
 
+const propertyFallbackImages = [
+    "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=900&q=80",
+    "https://images.unsplash.com/photo-1560185008-b033106af5c3?auto=format&fit=crop&w=900&q=80",
+    "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=900&q=80",
+    "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=900&q=80",
+    "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=900&q=80",
+    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=80",
+];
+
 const Properties = () => {
     const [searchParams, setSearchParams] = useSearchParams();
     const navigate = useNavigate();
@@ -222,7 +231,7 @@ const Properties = () => {
                     !error &&
                     properties.length > 0 && (
                         <>
-                            <div className="mb-4 flex items-center justify-between">
+                            <div className="mt-2 mb-4 flex items-center justify-between">
                                 <p className="text-sm font-medium text-slate-500">
                                     {properties.length}{" "}
                                     {properties.length === 1
@@ -233,10 +242,15 @@ const Properties = () => {
                             </div>
 
                             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                                {properties.map((property) => (
+                                {properties.map((property, index) => (
                                     <PropertyCard
                                         key={property._id}
                                         property={property}
+                                        fallbackImage={
+                                            propertyFallbackImages[
+                                                index % propertyFallbackImages.length
+                                            ]
+                                        }
                                         isFavorite={favoriteItems.some(
                                             (item) =>
                                                 item._id === property._id

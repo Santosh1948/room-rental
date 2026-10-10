@@ -76,7 +76,7 @@ const Navbar = () => {
     };
 
     const navLinkClass = ({ isActive }) =>
-        `text-sm font-semibold transition-colors ${
+        `text-sm font-semibold transition-colors md:inline-flex md:h-10 md:items-center ${
             isActive
                 ? "text-blue-600"
                 : "text-slate-600 hover:text-blue-600"
@@ -105,7 +105,7 @@ const Navbar = () => {
                 </Link>
 
                 {/* Desktop Navigation */}
-                <nav className="hidden items-center gap-8 md:flex">
+                <nav className="hidden h-10 items-center gap-8 md:flex">
                     <NavLink to="/" className={navLinkClass}>
                         Home
                     </NavLink>
@@ -132,7 +132,7 @@ const Navbar = () => {
                 </nav>
 
                 {/* Desktop Actions */}
-                <div className="hidden items-center gap-2 md:flex">
+                <div className="hidden h-10 items-center gap-2 md:flex">
                     {isAuthenticated ? (
                         <>
                             {/* Favorites */}
@@ -169,7 +169,7 @@ const Navbar = () => {
                                     onClick={() =>
                                         setProfileOpen(!profileOpen)
                                     }
-                                    className="flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-2 py-1.5 transition hover:border-slate-300 hover:bg-slate-50"
+                                    className="flex h-10 items-center gap-2 rounded-xl border border-slate-200 bg-white px-2 py-1 transition hover:border-slate-300 hover:bg-slate-50"
                                 >
                                     <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-600 text-xs font-bold text-white">
                                         {user?.name

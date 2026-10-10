@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 
 const PropertyCard = ({
     property,
+    fallbackImage,
     isFavorite = false,
     onFavorite,
 }) => {
@@ -15,13 +16,18 @@ const PropertyCard = ({
 
     const image =
         property.images?.[0] ||
+        property.mages?.[0] ||
+        fallbackImage ||
         "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=900&q=80";
 
-    const rent =
-        property.monthlyRent ||
-        property.rent ||
-        property.price ||
-        0;
+    const rent = property.monthlyRent || property.rent || property.price;
+    const numericRent = Number(rent);
+    const hasPrice =
+        rent !== null &&
+        rent !== undefined &&
+        rent !== "" &&
+        Number.isFinite(numericRent) &&
+        numericRent > 0;
 
     const location =
         property.address?.city ||
@@ -56,8 +62,12 @@ const PropertyCard = ({
                     alt={property.title || "Rental property"}
                     className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
                     onError={(event) => {
-                        event.currentTarget.src =
-                            "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=900&q=80";
+                        if (
+                            fallbackImage &&
+                            event.currentTarget.src !== fallbackImage
+                        ) {
+                            event.currentTarget.src = fallbackImage;
+                        }
                     }}
                 />
 
@@ -87,22 +97,32 @@ const PropertyCard = ({
                     </button>
                 </div>
 
-                {property.isAvailable && (
-                    <div className="absolute bottom-3 left-3 rounded-full bg-emerald-500 px-3 py-1.5 text-xs font-semibold text-white shadow-sm">
-                        Available
-                    </div>
-                )}
+                <div
+                    className={`absolute bottom-3 left-3 rounded-full px-3 py-1.5 text-xs font-semibold text-white shadow-sm ${
+                        property.isAvailable === true
+                            ? "bg-emerald-500"
+                            : property.isAvailable === false
+                              ? "bg-slate-600"
+                              : "bg-slate-500"
+                    }`}
+                >
+                    {property.isAvailable === true
+                        ? "Available"
+                        : property.isAvailable === false
+                          ? "Unavailable"
+                          : "Availability not listed"}
+                </div>
             </div>
 
             {/* Content */}
             <div className="p-5">
                 <div className="flex items-start justify-between gap-3">
                     <div className="min-w-0">
-                        <h3 className="truncate text-lg font-bold text-slate-900">
+                        <h2 className="truncate text-lg font-bold text-slate-900">
                             {property.title ||
                                 property.name ||
                                 "Rental Property"}
-                        </h3>
+                        </h2>
 
                         <div className="mt-2 flex items-center gap-1.5 text-sm text-slate-500">
                             <MapPin
@@ -126,16 +146,24 @@ const PropertyCard = ({
 
                 <div className="flex items-end justify-between">
                     <div>
-                        <p className="text-xs font-medium uppercase tracking-wide text-slate-400">
-                            Starting from
-                        </p>
+                        {hasPrice ? (
+                            <>
+                                <p className="text-xs font-medium uppercase tracking-wide text-slate-400">
+                                    Starting from
+                                </p>
 
-                        <p className="mt-1 text-xl font-extrabold text-slate-900">
-                            ₹{Number(rent).toLocaleString("en-IN")}
-                            <span className="ml-1 text-sm font-medium text-slate-400">
-                                /month
-                            </span>
-                        </p>
+                                <p className="mt-1 text-xl font-extrabold text-slate-900">
+                                    ₹{numericRent.toLocaleString("en-IN")}
+                                    <span className="ml-1 text-sm font-medium text-slate-400">
+                                        /month
+                                    </span>
+                                </p>
+                            </>
+                        ) : (
+                            <p className="text-sm font-semibold text-slate-600">
+                                Contact for price
+                            </p>
+                        )}
                     </div>
 
                     <div className="flex items-center gap-1.5 text-xs font-medium text-slate-500">
