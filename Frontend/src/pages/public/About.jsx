@@ -22,6 +22,13 @@ const About = () => (
                     workflow—from discovery and requests to bookings and
                     payments—all in one platform.
                 </p>
+                <Link
+                    to="/properties"
+                    className="mt-8 inline-flex items-center gap-2 rounded-xl bg-blue-600 px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-blue-600/20 transition hover:bg-blue-700 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+                >
+                    Browse properties
+                    <ArrowRight size={18} aria-hidden="true" />
+                </Link>
             </div>
         </section>
 
@@ -49,7 +56,7 @@ const About = () => (
                     return (
                         <div
                             key={item.title}
-                            className="rounded-2xl border border-slate-200 bg-slate-50 p-8"
+                            className="p-0"
                         >
                             <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-600 text-white">
                                 <Icon size={22} />
@@ -71,7 +78,7 @@ const About = () => (
                 <div>
                     <div className="flex items-center gap-3 text-blue-600">
                         <Building2 size={22} />
-                        <p className="text-sm font-bold uppercase tracking-widest">
+                        <p className="text-sm font-bold tracking-wide">
                             Ready to explore?
                         </p>
                     </div>

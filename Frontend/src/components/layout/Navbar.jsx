@@ -182,9 +182,11 @@ const Navbar = () => {
                                             {user?.name || "User"}
                                         </p>
 
-                                        <p className="text-[10px] font-medium text-slate-400">
-                                            {user?.role || "USER"}
-                                        </p>
+                                        {user?.role && user.role !== "USER" && (
+                                            <p className="text-[10px] font-medium text-slate-400">
+                                                {user.role}
+                                            </p>
+                                        )}
                                     </div>
 
                                     <ChevronDown
