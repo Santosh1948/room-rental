@@ -1,4 +1,4 @@
-import axios from "axios";
+﻿import axios from "axios";
 
 const api = axios.create({
     baseURL:
@@ -35,10 +35,7 @@ api.interceptors.response.use(
                 localStorage.removeItem("token");
                 localStorage.removeItem("user");
 
-                // Prevent redirect loops
-                if (
-                    window.location.pathname !== "/login"
-                ) {
+                if (window.location.pathname !== "/login") {
                     window.location.href = "/login";
                 }
             }

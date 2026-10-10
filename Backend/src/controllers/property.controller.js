@@ -226,7 +226,7 @@ const deleteProperty = async (req, res) => {
             });
         }
 
-        if(property.owner.toString() !== req.user.usrId){
+        if(property.owner.toString() !== req.user.userId){
             return res.status(403).json({
                 success : false,
                 message : "You can only delete your own propoty"

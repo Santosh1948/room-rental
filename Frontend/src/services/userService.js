@@ -11,7 +11,7 @@ const updateProfile = async (data) => {
 };
 
 const getDashboard = async () => {
-    const response = await api.get("/users/dashboard");
+    const response = await api.get("/users/user-dashboard");
     return response.data;
 };
 
