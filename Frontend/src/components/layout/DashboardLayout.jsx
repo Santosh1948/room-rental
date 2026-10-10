@@ -1,16 +1,18 @@
-import { NavLink, Outlet } from "react-router-dom";
+import { NavLink, Outlet, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 import { getNavForRole } from "../../config/dashboardNav";
 
 const DashboardLayout = ({ title, subtitle }) => {
     const { user } = useSelector((state) => state.auth);
+    const { pathname } = useLocation();
     const navItems = getNavForRole(user?.role);
+    const showPageHeading = pathname !== "/profile";
 
     return (
         <div className="min-h-[calc(100vh-72px)] bg-slate-50">
             <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-                {(title || subtitle) && (
+                {showPageHeading && (title || subtitle) && (
                     <div className="mb-8">
                         {title && (
                             <h1 className="text-3xl font-extrabold tracking-tight text-slate-900">

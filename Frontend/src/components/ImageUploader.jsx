@@ -98,7 +98,7 @@ const ImageUploader = ({
                     type="button"
                     onClick={() => inputRef.current?.click()}
                     disabled={uploading || images.length >= maxFiles}
-                    className="inline-flex items-center gap-2 rounded-xl border border-blue-200 bg-white px-3 py-2 text-xs font-semibold text-blue-600 transition hover:bg-blue-50 disabled:cursor-not-allowed disabled:opacity-50"
+                    className="inline-flex items-center gap-2 rounded-xl bg-blue-600 px-3 py-2 text-xs font-semibold text-white transition hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50"
                 >
                     {uploading ? (
                         <Loader2 size={15} className="animate-spin" />

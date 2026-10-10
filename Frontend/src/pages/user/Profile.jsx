@@ -186,7 +186,7 @@ const Profile = () => {
         <section className="min-h-screen bg-slate-50">
             {/* Header */}
             <div className="border-b border-slate-200 bg-white">
-                <div className="mx-auto max-w-5xl px-4 py-8 sm:px-6 lg:px-8">
+                <div className="w-full py-8">
                     <Link
                         to="/dashboard"
                         className="mb-5 inline-flex items-center gap-2 text-sm font-medium text-slate-500 transition hover:text-blue-600"
@@ -212,7 +212,7 @@ const Profile = () => {
 
                         <div>
                             <p className="text-sm font-semibold text-blue-600">
-                                ACCOUNT SETTINGS
+                                Account settings
                             </p>
 
                             <h1 className="font-[family-name:var(--font-display)] text-3xl font-extrabold tracking-tight text-slate-900">
@@ -223,14 +223,14 @@ const Profile = () => {
                 </div>
             </div>
 
-            <div className="mx-auto max-w-5xl px-4 py-8 sm:px-6 lg:px-8">
+            <div className="w-full py-8">
                 {error && (
                     <div className="mb-6 rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-600">
                         {error}
                     </div>
                 )}
 
-                <div className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
+                <div className="grid gap-6">
                     <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
                         <div className="mb-8">
                             <h2 className="text-lg font-bold text-slate-900">
@@ -490,7 +490,7 @@ const Profile = () => {
                             <button
                                 type="submit"
                                 disabled={changingPassword}
-                                className="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-slate-200 bg-slate-900 px-5 py-3 text-sm font-bold text-white transition hover:bg-slate-800 disabled:cursor-not-allowed disabled:opacity-60"
+                                className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-blue-600 px-5 py-3 text-sm font-bold text-white shadow-lg shadow-blue-600/20 transition hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-60"
                             >
                                 {changingPassword ? (
                                     <Loader2
@@ -510,7 +510,7 @@ const Profile = () => {
                 </div>
 
                 {/* Account summary */}
-                <div className="mt-6 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+                <div className="mt-6 w-fit max-w-full rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
                     <p className="text-xs font-semibold uppercase tracking-wider text-slate-400">
                         Account
                     </p>
