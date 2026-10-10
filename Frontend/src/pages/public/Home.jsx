@@ -15,6 +15,15 @@ import propertyService from "../../services/propertyService";
 import PropertyCard from "../../components/common/PropertyCard";
 import { unwrapList } from "../../utils/apiHelpers";
 
+const propertyFallbackImages = [
+    "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=900&q=80",
+    "https://images.unsplash.com/photo-1560185008-b033106af5c3?auto=format&fit=crop&w=900&q=80",
+    "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=900&q=80",
+    "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=900&q=80",
+    "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=900&q=80",
+    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=80",
+];
+
 const Home = () => {
     const navigate = useNavigate();
     const [city, setCity] = useState("");
@@ -145,53 +154,17 @@ const Home = () => {
                             <div className="overflow-hidden rounded-[2rem] border border-white/10 bg-white/10 p-3 shadow-2xl backdrop-blur">
                                 <div className="aspect-[4/5] overflow-hidden rounded-[1.5rem] bg-gradient-to-br from-blue-500 via-indigo-600 to-slate-900">
                                     <div className="flex h-full flex-col justify-between p-7">
-                                        <div className="flex items-center justify-between">
-                                            <div className="rounded-full bg-white/15 px-3 py-1.5 text-xs font-semibold text-white backdrop-blur">
-                                                Featured
-                                            </div>
-
-                                            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white/15 text-white backdrop-blur">
-                                                <Building2 size={19} />
-                                            </div>
-                                        </div>
-
                                         <div>
-                                            <p className="text-sm text-blue-100">
-                                                Comfortable living
-                                            </p>
-
-                                            <h3 className="mt-2 text-3xl font-bold text-white">
+                                            <h2 className="text-3xl font-bold text-white">
                                                 Your next
                                                 <br />
                                                 chapter starts here.
-                                            </h3>
-
-                                            <div className="mt-6 flex items-center gap-2 text-sm text-blue-100">
-                                                <MapPin size={16} />
-                                                Find properties near you
-                                            </div>
+                                            </h2>
+                                            <p className="mt-4 text-sm leading-6 text-blue-100">
+                                                Comfortable spaces, ready for
+                                                your next chapter.
+                                            </p>
                                         </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            {/* Floating card */}
-                            <div className="absolute -bottom-8 -left-10 rounded-2xl border border-slate-200 bg-white p-4 shadow-xl">
-                                <div className="flex items-center gap-3">
-                                    <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
-                                        <Star
-                                            size={19}
-                                            fill="currentColor"
-                                        />
-                                    </div>
-
-                                    <div>
-                                        <p className="text-sm font-bold text-slate-900">
-                                            Trusted experience
-                                        </p>
-                                        <p className="text-xs text-slate-500">
-                                            Simple. Clear. Convenient.
-                                        </p>
                                     </div>
                                 </div>
                             </div>
@@ -236,10 +209,15 @@ const Home = () => {
                         </p>
                     ) : (
                         <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                            {featured.map((property) => (
+                            {featured.map((property, index) => (
                                 <PropertyCard
                                     key={property._id}
                                     property={property}
+                                    fallbackImage={
+                                        propertyFallbackImages[
+                                            index % propertyFallbackImages.length
+                                        ]
+                                    }
                                 />
                             ))}
                         </div>
@@ -437,7 +415,7 @@ const Home = () => {
                                 key={item.number}
                                 className="rounded-2xl border border-white/10 bg-white/5 p-7"
                             >
-                                <span className="text-sm font-bold text-blue-400">
+                                <span className="flex h-11 w-11 items-center justify-center rounded-xl border border-blue-400/20 bg-blue-500/15 text-sm font-bold text-blue-300">
                                     {item.number}
                                 </span>
 
