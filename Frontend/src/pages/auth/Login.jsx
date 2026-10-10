@@ -68,16 +68,9 @@ const Login = () => {
                 <div className="relative hidden overflow-hidden bg-slate-950 lg:flex">
                     <div className="absolute inset-0 bg-gradient-to-br from-blue-600/30 via-slate-950 to-slate-950" />
 
-                    <div className="relative z-10 flex w-full flex-col justify-between p-10 xl:p-14">
+                    <div className="relative z-10 flex w-full flex-col justify-center py-10 pr-8 pl-[max(2rem,calc((100vw-80rem)/2+2rem))] xl:py-14">
                         <div>
-                            <Link
-                                to="/"
-                                className="font-display text-2xl font-bold text-white"
-                            >
-                                Roomly
-                            </Link>
-
-                            <p className="mt-6 max-w-md text-4xl font-bold leading-tight text-white xl:text-5xl">
+                            <p className="max-w-md text-4xl font-bold leading-tight text-white xl:text-5xl">
                                 Find a place that feels like home.
                             </p>
 
@@ -86,25 +79,16 @@ const Login = () => {
                                 connect with owners, and manage your rental
                                 journey from one place.
                             </p>
-                        </div>
 
-                        <p className="text-sm text-slate-400">
-                            Simple. Secure. Made for modern renting.
-                        </p>
+                            <p className="mt-6 text-sm text-slate-400">
+                                Simple. Secure. Made for modern renting.
+                            </p>
+                        </div>
                     </div>
                 </div>
 
                 <div className="flex items-center justify-center px-4 py-10 sm:px-6 lg:px-10">
                     <div className="w-full max-w-md">
-                        <div className="mb-8 lg:hidden">
-                            <Link
-                                to="/"
-                                className="font-display text-2xl font-bold text-slate-900"
-                            >
-                                Roomly
-                            </Link>
-                        </div>
-
                         <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
                             <h1 className="font-display text-2xl font-bold text-slate-900">
                                 Welcome back

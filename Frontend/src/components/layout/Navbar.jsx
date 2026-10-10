@@ -21,6 +21,7 @@ const Navbar = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const dispatch = useDispatch();
+    const isLoginPage = location.pathname === "/login";
     const isRegisterPage = location.pathname === "/register";
 
     const [mobileOpen, setMobileOpen] = useState(false);
@@ -254,7 +255,12 @@ const Navbar = () => {
                         <>
                             <Link
                                 to="/login"
-                                className="ml-2 flex items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold text-slate-700 transition hover:bg-slate-100"
+                                aria-current={isLoginPage ? "page" : undefined}
+                                className={`ml-2 flex items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold transition ${
+                                    isLoginPage
+                                        ? "bg-blue-50 text-blue-700 ring-1 ring-blue-200"
+                                        : "text-slate-700 hover:bg-slate-100"
+                                }`}
                             >
                                 <LogIn size={17} />
                                 Login
@@ -263,7 +269,11 @@ const Navbar = () => {
                             {!isRegisterPage && (
                                 <Link
                                     to="/register"
-                                    className="rounded-xl bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-blue-600/20 transition hover:bg-blue-700"
+                                    className={`rounded-xl px-5 py-2.5 text-sm font-semibold transition ${
+                                        isLoginPage
+                                            ? "border border-blue-200 bg-white text-blue-700 hover:bg-blue-50"
+                                            : "bg-blue-600 text-white shadow-lg shadow-blue-600/20 hover:bg-blue-700"
+                                    }`}
                                 >
                                     Get Started
                                 </Link>
@@ -403,7 +413,12 @@ const Navbar = () => {
                                 <Link
                                     to="/login"
                                     onClick={closeMobile}
-                                    className="flex items-center gap-3 rounded-xl px-3 py-3 text-sm font-semibold text-slate-600 hover:bg-slate-50"
+                                    aria-current={isLoginPage ? "page" : undefined}
+                                    className={`flex items-center gap-3 rounded-xl px-3 py-3 text-sm font-semibold ${
+                                        isLoginPage
+                                            ? "bg-blue-50 text-blue-700"
+                                            : "text-slate-600 hover:bg-slate-50"
+                                    }`}
                                 >
                                     <LogIn size={18} />
                                     Login
@@ -413,7 +428,11 @@ const Navbar = () => {
                                     <Link
                                         to="/register"
                                         onClick={closeMobile}
-                                        className="mt-2 flex items-center justify-center gap-2 rounded-xl bg-blue-600 px-4 py-3 text-sm font-bold text-white"
+                                        className={`mt-2 flex items-center justify-center gap-2 rounded-xl px-4 py-3 text-sm font-bold ${
+                                            isLoginPage
+                                                ? "border border-blue-200 bg-white text-blue-700"
+                                                : "bg-blue-600 text-white"
+                                        }`}
                                     >
                                         <UserRound size={18} />
                                         Get Started
