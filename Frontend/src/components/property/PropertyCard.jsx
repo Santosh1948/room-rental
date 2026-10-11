@@ -14,11 +14,14 @@ const PropertyCard = ({
 }) => {
     const navigate = useNavigate();
 
-    const image =
+    const propertyImage =
         property.images?.[0] ||
-        property.mages?.[0] ||
-        fallbackImage ||
-        "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=900&q=80";
+        property.mages?.[0];
+    const image =
+        propertyImage && !propertyImage.toLowerCase().includes("linkedin_banner")
+            ? propertyImage
+            : fallbackImage ||
+              "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=900&q=80";
 
     const rent = property.monthlyRent || property.rent || property.price;
     const numericRent = Number(rent);

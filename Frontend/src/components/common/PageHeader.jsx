@@ -2,11 +2,12 @@ const PageHeader = ({
     title,
     description,
     action,
+    titleClassName = "font-display text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl",
 }) => {
     return (
         <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
             <div>
-                <h1 className="font-display text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
+                <h1 className={titleClassName}>
                     {title}
                 </h1>
 

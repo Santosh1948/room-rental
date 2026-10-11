@@ -149,6 +149,7 @@ const Properties = () => {
                 <PageHeader
                     title="Find your next place"
                     description="Explore verified rooms, PGs, hostels, apartments and houses that match your needs."
+                    titleClassName="font-display text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl"
                 />
 
                 <div className="mb-8 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-5">
@@ -198,7 +199,7 @@ const Properties = () => {
                         <button
                             type="button"
                             onClick={() => setSearchParams({})}
-                            className="rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-slate-700 hover:bg-slate-50"
+                            className="rounded-xl border border-slate-300 bg-slate-50 px-4 py-3 text-sm font-semibold text-slate-700 transition hover:bg-slate-100 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-blue-500/20"
                         >
                             Reset
                         </button>
@@ -231,8 +232,8 @@ const Properties = () => {
                     !error &&
                     properties.length > 0 && (
                         <>
-                            <div className="mt-2 mb-4 flex items-center justify-between">
-                                <p className="text-sm font-medium text-slate-500">
+                            <div className="mt-4 mb-6 flex items-center justify-between">
+                                <p className="text-base font-semibold text-slate-600">
                                     {properties.length}{" "}
                                     {properties.length === 1
                                         ? "property"
