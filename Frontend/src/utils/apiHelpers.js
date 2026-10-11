@@ -40,11 +40,17 @@ export const unwrapOne = (payload, keys = []) => {
 
 export const getUserId = (user) => user?.id || user?._id;
 
-export const getPropertyImage = (property, fallbackImage) =>
-    property?.images?.[0] ||
-    property?.mages?.[0] ||
-    fallbackImage ||
-    "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=900&q=80";
+export const getPropertyImage = (property, fallbackImage) => {
+    const propertyImage =
+        property?.images?.[0] ||
+        property?.mages?.[0];
+
+    return typeof propertyImage === "string" &&
+        !propertyImage.toLowerCase().includes("linkedin_banner")
+        ? propertyImage
+        : fallbackImage ||
+              "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=900&q=80";
+};
 
 export const formatAddress = (address) => {
     if (!address) return "Location not specified";

@@ -153,9 +153,9 @@ const Home = () => {
                         <div className="relative mx-auto max-w-md">
                             <div className="overflow-hidden rounded-[2rem] border border-white/10 bg-white/10 p-3 shadow-2xl backdrop-blur">
                                 <div className="aspect-[4/5] overflow-hidden rounded-[1.5rem] bg-gradient-to-br from-blue-500 via-indigo-600 to-slate-900">
-                                    <div className="flex h-full flex-col justify-between p-7">
+                                    <div className="flex h-full flex-col justify-end p-7">
                                         <div>
-                                            <h2 className="text-3xl font-bold text-white">
+                                            <h2 className="text-2xl font-bold text-white">
                                                 Your next
                                                 <br />
                                                 chapter starts here.
@@ -175,7 +175,7 @@ const Home = () => {
 
             <section className="bg-white py-20">
                 <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-                    <div className="flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
+                    <div className="flex flex-col justify-between gap-5 sm:flex-row sm:items-center">
                         <div>
                             <p className="text-sm font-bold uppercase tracking-widest text-blue-600">
                                 Featured
@@ -308,7 +308,7 @@ const Home = () => {
                             Why Roomly
                         </p>
 
-                        <h2 className="mt-3 max-w-xl text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+                        <h2 className="mt-2 max-w-xl text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
                             Everything you need for a simpler rental journey.
                         </h2>
 
@@ -320,7 +320,7 @@ const Home = () => {
 
                         <Link
                             to="/about"
-                            className="mt-7 inline-flex items-center gap-2 rounded-xl bg-slate-900 px-5 py-3 text-sm font-semibold text-white transition hover:bg-slate-800"
+                            className="mt-7 inline-flex items-center gap-2 rounded-xl border border-blue-600 bg-white px-5 py-3 text-sm font-semibold text-blue-700 transition hover:bg-blue-50 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue-600"
                         >
                             Learn more
                             <ArrowRight size={17} />
