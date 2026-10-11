@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 
 import bookingService from "../../services/bookingService";
+import { getPropertyImage } from "../../utils/apiHelpers";
 
 const MyBookings = () => {
     const [bookings, setBookings] = useState([]);
@@ -69,24 +70,22 @@ const MyBookings = () => {
     };
 
     return (
-        <div className="min-h-screen bg-slate-50">
-            <section className="bg-slate-950">
-                <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
-                    <p className="text-sm font-semibold text-blue-400">
-                        Your stay
-                    </p>
+        <div className="space-y-6">
+            <div>
+                <p className="text-sm font-semibold text-blue-600">
+                    Your stay
+                </p>
 
-                    <h1 className="mt-2 text-3xl font-extrabold text-white">
-                        My bookings
-                    </h1>
+                <h2 className="mt-2 text-2xl font-bold tracking-tight text-slate-900">
+                    My bookings
+                </h2>
 
-                    <p className="mt-2 text-sm text-slate-400">
-                        Manage your confirmed and previous rental bookings.
-                    </p>
-                </div>
-            </section>
+                <p className="mt-2 text-sm text-slate-500">
+                    Manage your confirmed and previous rental bookings.
+                </p>
+            </div>
 
-            <main className="mx-auto max-w-5xl px-4 py-10 sm:px-6 lg:px-8">
+            <div>
                 {error && (
                     <div className="mb-6 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
                         {error}
@@ -140,7 +139,7 @@ const MyBookings = () => {
                         ))}
                     </div>
                 )}
-            </main>
+            </div>
         </div>
     );
 };
@@ -194,8 +193,13 @@ const BookingCard = ({
         <article className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
             <div className="p-6">
                 <div className="flex flex-col gap-6 md:flex-row md:items-center">
-                    <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-blue-50 text-blue-600">
-                        <Home size={25} />
+                    <div className="h-16 w-16 shrink-0 overflow-hidden rounded-2xl bg-slate-100">
+                        <img
+                            src={getPropertyImage(property)}
+                            alt={`${property?.title || property?.name || "Rental property"} thumbnail`}
+                            className="h-full w-full object-cover"
+                            loading="lazy"
+                        />
                     </div>
 
                     <div className="min-w-0 flex-1">

@@ -78,6 +78,23 @@ const Navbar = () => {
         return "/dashboard";
     };
 
+    const isDashboardActive =
+        user?.role === "OWNER"
+            ? location.pathname.startsWith("/owner")
+            : user?.role === "ADMIN"
+              ? location.pathname.startsWith("/admin")
+              : [
+                    "/dashboard",
+                    "/my-bookings",
+                    "/my-requests",
+                    "/my-payments",
+                    "/favorites",
+                ].some(
+                    (path) =>
+                        location.pathname === path ||
+                        location.pathname.startsWith(`${path}/`)
+                );
+
     const navLinkClass = ({ isActive }) =>
         `text-sm font-semibold transition-colors md:inline-flex md:h-10 md:items-center ${
             isActive
@@ -127,7 +144,22 @@ const Navbar = () => {
                     {isAuthenticated && (
                         <NavLink
                             to={getDashboardPath()}
-                            className={navLinkClass}
+                            aria-current={
+                                isDashboardActive
+                                    ? location.pathname === getDashboardPath()
+                                        ? "page"
+                                        : "location"
+                                    : undefined
+                            }
+                            className={() =>
+                                `${navLinkClass({
+                                    isActive: isDashboardActive,
+                                })} ${
+                                    isDashboardActive
+                                        ? "rounded-lg bg-blue-50 px-3"
+                                        : ""
+                                }`
+                            }
                         >
                             Dashboard
                         </NavLink>
@@ -335,9 +367,22 @@ const Navbar = () => {
                                 <NavLink
                                     to={getDashboardPath()}
                                     onClick={closeMobile}
+                                    aria-current={
+                                        isDashboardActive
+                                            ? location.pathname === getDashboardPath()
+                                                ? "page"
+                                                : "location"
+                                            : undefined
+                                    }
                                     className={navLinkClass}
                                 >
-                                    <span className="block rounded-xl px-3 py-3">
+                                    <span
+                                        className={`block rounded-xl px-3 py-3 ${
+                                            isDashboardActive
+                                                ? "bg-blue-50 text-blue-700"
+                                                : ""
+                                        }`}
+                                    >
                                         Dashboard
                                     </span>
                                 </NavLink>
